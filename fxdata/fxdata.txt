@@ -1,8 +1,4 @@
-namespace Images
-
-    include "Images.hpp"
-
-namespace_end
+include "Images.hpp"
 
 savesection  // Anything below here will be stored in the save block
 

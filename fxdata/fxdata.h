@@ -12,8 +12,4 @@ constexpr uint24_t FX_DATA_BYTES = 3074;
 constexpr uint16_t FX_SAVE_PAGE  = 0xfff0;
 constexpr uint24_t FX_SAVE_BYTES = 2;
 
-namespace Images
-{
-  constexpr uint24_t BG = 0x000000;
-}
-
+constexpr uint24_t BG = 0x000000;

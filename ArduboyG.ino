@@ -1,51 +1,41 @@
 #define ABG_IMPLEMENTATION
-#define ABG_TIMER1
 #define ABG_SYNC_PARK_ROW
 #define SPRITESU_IMPLEMENTATION
 
-#include <ArduboyFX.h>  
-#include "src/ArduboyG.h"
-#include "fxdata/fxdata.h"
-
 #define SPRITESU_OVERWRITE
 #define SPRITESU_PLUSMASK
-#define SPRITESU_RECT
 #define SPRITESU_FX
 
+#include <ArduboyFX.h>  
+#include "src/ArduboyG.h"
 #include "src/SpritesU.hpp"
 
-extern ArduboyGBase_Config<ABG_Mode::L4_Triplane> a;
-decltype(a) a;
+#include "fxdata/fxdata.h"
 
-
-
+ArduboyGBase_Config<ABG_Mode::L4_Triplane> arduboy;
 
 void update() {
-    
-    // uint8_t b = a.buttonsState();
-    // Check for buttons/ move players etc.
     
 }
 
 void loop() {
 
     FX::enableOLED();
-    a.waitForNextPlane(BLACK);
+    arduboy.waitForNextPlane(BLACK);
     FX::disableOLED();
 
-    if (a.needsUpdate()) update();
+    if (arduboy.needsUpdate()) update();
 
-    uint16_t currentPlane = a.currentPlane();
+    uint16_t currentPlane = arduboy.currentPlane();
 
-    SpritesU::drawOverwriteFX(0, 0, Images::BG, currentPlane);    
+    SpritesU::drawOverwriteFX(0, 0, BG, currentPlane);    
 
 }
 
 void setup() {      
 
-    a.boot();
-    abg_detail::send_cmds_prog<0xDB, 0x20>();
-    a.startGray();
+    arduboy.boot();
+    arduboy.startGray();
 
     FX::begin(FX_DATA_PAGE, FX_SAVE_PAGE);
 
